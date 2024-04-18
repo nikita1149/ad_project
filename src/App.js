@@ -28,7 +28,8 @@ function App() {
       max_characters_per_line: 31,
       font_size: 44,
       alignment: 'left',
-      text_color: '#000000'
+      text_color: '#FFFFFF',
+      background_color: '#000000'
     },
     image_mask: { x: 56, y: 442, width: 970, height: 600 },
     urls: {
