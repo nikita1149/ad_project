@@ -133,7 +133,7 @@
 
 // export default Canvas;
 // Canvas.js
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 class Canvas extends React.Component {
   constructor(props) {
@@ -152,7 +152,6 @@ class Canvas extends React.Component {
   drawCanvas() {
     const canvas = this.canvasRef.current;
     const context = canvas.getContext('2d');
-
     const { backgroundColor, image, templateData, captionText, ctaText } = this.props;
 
     this.clearCanvas(context);
@@ -160,7 +159,7 @@ class Canvas extends React.Component {
     this.drawDesignPattern(context, templateData.design_pattern);
     this.drawMask(context, templateData.mask);
     this.drawMaskStroke(context, templateData.stroke);
-    this.drawImage(context, image, templateData.mask);
+    this.drawImage(context, image, templateData.image_mask);
     this.drawText(context, captionText, templateData.caption);
     this.drawCTA(context, ctaText, templateData.cta);
   }
@@ -206,25 +205,18 @@ class Canvas extends React.Component {
 
   drawImage(ctx, image, maskData) {
     if (image && maskData) {
+      const { x, y, width, height } = maskData;
       const img = new Image();
       img.src = image;
       img.onload = () => {
-        const maskImg = new Image();
-        maskImg.src = maskData;
-        maskImg.onload = () => {
-          ctx.save();
-          ctx.globalCompositeOperation = 'source-in';
-          ctx.drawImage(maskImg, 0, 0, ctx.canvas.width, ctx.canvas.height);
-          ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height);
-          ctx.restore();
-        };
+        ctx.drawImage(img, x, y, width, height);
       };
     }
   }
 
-  drawText(ctx, text, textData) {
-    if (text && textData) {
-      const { position, font_size, alignment, text_color, max_characters_per_line } = textData;
+  drawText(ctx, captionText, captionData) {
+    if (captionText && captionData) {
+      const { text, position, font_size, alignment, text_color, max_characters_per_line } = captionData;
       ctx.fillStyle = text_color;
       ctx.font = `${font_size}px Arial`;
       ctx.textAlign = alignment;
@@ -232,11 +224,11 @@ class Canvas extends React.Component {
     }
   }
 
-  drawCTA(ctx, text, ctaData) {
-    if (text && ctaData) {
-      const { position, font_size, text_color, background_color, wrap_length } = ctaData;
+  drawCTA(ctx, ctaText, ctaData) {
+    if (ctaText && ctaData) {
+      const { text, position, font_size, text_color, background_color } = ctaData;
       const padding = 24;
-      const width = ctx.measureText(text).width + 2 * padding;
+      const width = ctx.measureText(ctaText).width + 2 * padding;
       const height = font_size + 2 * padding;
 
       ctx.fillStyle = background_color;
@@ -263,6 +255,8 @@ class Canvas extends React.Component {
 }
 
 export default Canvas;
+
+
 
 
 
