@@ -1,3 +1,4 @@
+
 import './App.css';
 import React, { useState } from 'react';
 import Canvas from './components/Canvas';
@@ -24,8 +25,10 @@ function App() {
     cta: {
       text: cta,
       position: { x: 190, y: 320 },
-      text_color: '#FFFFFF',
-      background_color: '#000000'
+      max_characters_per_line: 31,
+      font_size: 44,
+      alignment: 'left',
+      text_color: '#000000'
     },
     image_mask: { x: 56, y: 442, width: 970, height: 600 },
     urls: {
@@ -38,14 +41,13 @@ function App() {
   return (
     <div className="outer-div">
       <div className="canvas-div">
-        <div className='canvas'><Canvas
+        <Canvas
           backgroundColor={background}
           image={imageFile}
           templateData={templateData}
           captionText={caption}
           ctaText={cta}
-        /></div>
-        
+        />
       </div>
       <div className="input">
         <div className="ini-text">
@@ -56,10 +58,10 @@ function App() {
           <CanvasImage setImage={setImageFile} />
         </div>
         <div className="input-content">
-          <InputContent setCaptionText={setCaption} />
+          <InputContent setCaptionText={setCaption}  caption={caption}/>
         </div>
         <div className="input-cta">
-          <CtaContent setCtaText={setCta} />
+          <CtaContent setCtaText={setCta}  cta={cta}/>
         </div>
         <div className="input-color">
           <ColorPicker setBackground={setBackground} />

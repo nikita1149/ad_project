@@ -15,6 +15,7 @@ class Canvas extends React.Component {
   }
 
   drawCanvas() {
+    
     const canvas = this.canvasRef.current;
     const context = canvas.getContext('2d');
     const { backgroundColor, image, templateData, captionText, ctaText } = this.props;
