@@ -27,7 +27,6 @@ const CanvasImage = ({ setImage }) => {
     const selectedFile = e.target.files[0];
     setFile(URL.createObjectURL(selectedFile));
     setImage(URL.createObjectURL(selectedFile)); // Pass image URL instead of file object
-    
   };
 
   return (
