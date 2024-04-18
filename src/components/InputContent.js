@@ -1,24 +1,15 @@
 
-import React, { useState } from 'react';
-
-const InputContent = ({ setCaptionText }) => {
-  const [message, setMessage] = useState('');
-
-  const handleChange = (event) => {
-    const inputValue = event.target.value;
-    setMessage(inputValue);
-    setCaptionText(inputValue);
-  };
+const InputContent = ({ setCaptionText , caption }) => {
 
   return (
     <div>
-      <h2>Ad Content: {message}</h2>
+      <h2>Ad Content: {caption}</h2>
       <input
         type="text"
         id="message"
         name="message"
-        onChange={handleChange}
-        value={message}
+        onChange={(e)=>setCaptionText(e.target.value)}
+        value={caption}
       />
     </div>
   );

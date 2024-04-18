@@ -1,25 +1,40 @@
 .outer-div{
+  padding: 10px 0px;
   display: flex;
+  flex-direction: row;
 }
 
 .canvas-div{
-  height: 50%;
-  width: 50%;
+   flex:1;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 .input{
-  padding: 10px;
+  flex:1 ;
+  display: flex;
+  flex-direction: column;
+  gap:1rem;
+  
 }
 .input-cta{
-  margin: 10px;
+  width: 70%;
   padding: 10px;
   border: 1px solid grey;
 }
 .input-content{
-  margin: 10px;
+  width: 70%;
   padding: 10px;
   border: 1px solid grey;
 }
-.canvas{
-  margin: 100px;
-}
 
+
+
+@media (max-width:850px) {
+  .outer-div{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+}
