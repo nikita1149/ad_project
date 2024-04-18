@@ -1,0 +1,25 @@
+.outer-div{
+  display: flex;
+}
+
+.canvas-div{
+  height: 50%;
+  width: 50%;
+}
+.input{
+  padding: 10px;
+}
+.input-cta{
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid grey;
+}
+.input-content{
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid grey;
+}
+.canvas{
+  margin: 100px;
+}
+
