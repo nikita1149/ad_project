@@ -38,13 +38,14 @@ function App() {
   return (
     <div className="outer-div">
       <div className="canvas-div">
-        <Canvas
+        <div className='canvas'><Canvas
           backgroundColor={background}
           image={imageFile}
           templateData={templateData}
           captionText={caption}
           ctaText={cta}
-        />
+        /></div>
+        
       </div>
       <div className="input">
         <div className="ini-text">
