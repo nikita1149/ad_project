@@ -1,32 +1,3 @@
-
-// import './App.css';
-// import Canvas from './components/CanvasPart';
-// import CanvasImage from './components/CanvasImage';
-// import ColorPicker from './components/ColorPicker';
-// import InputContent from './components/InputContent';
-// import CtaContent from './components/CtaContent';
-
-// function App() {
-//   return (
-//     <div className = "outer-div">
-//       <div className = "canvas-div">
-//         <div className='canvas'><Canvas/></div>
-//         </div>
-//       <div className = "input">
-//         <div className="ini-text">
-//           <h4>Ad Customisation</h4>
-//           <p>customise your ad and get the templates accordingly</p>
-//         </div>
-//         <div className = "input-img"><CanvasImage/></div>
-//         <div className = "input-content"><InputContent/></div>
-//         <div className="input-cta"><CtaContent/></div>
-//         <div className="input-color"><ColorPicker/></div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default App;
 import './App.css';
 import React, { useState } from 'react';
 import Canvas from './components/Canvas';
@@ -34,25 +5,46 @@ import CanvasImage from './components/CanvasImage';
 import InputContent from './components/InputContent';
 import CtaContent from './components/CtaContent';
 import ColorPicker from './components/ColorPicker';
-import { mask, stroke, design_pattern } from './assets/images'; // Importing image URLs
 
 function App() {
-  const [background, setColor] = useState('#0369A1'); // Default background color
-  const [imageFile, setImageFile] = useState(null); // State to store image file
-  const [caption, setCaption] = useState(''); // State to store caption text
-  const [cta, setCta] = useState(''); // State to store CTA text
+  const [background, setBackground] = useState('#0369A1');
+  const [imageFile, setImageFile] = useState(null);
+  const [caption, setCaption] = useState('1 & 2 BHK Luxury Apartments at just Rs.34.97 Lakhs');
+  const [cta, setCta] = useState('Shop Now');
+
+  const templateData = {
+    caption: {
+      text: caption,
+      position: { x: 50, y: 50 },
+      max_characters_per_line: 31,
+      font_size: 44,
+      alignment: 'left',
+      text_color: '#FFFFFF'
+    },
+    cta: {
+      text: cta,
+      position: { x: 190, y: 320 },
+      text_color: '#FFFFFF',
+      background_color: '#000000'
+    },
+    image_mask: { x: 56, y: 442, width: 970, height: 600 },
+    urls: {
+      mask: 'https://d273i1jagfl543.cloudfront.net/templates/global_temp_landscape_temp_10_mask.png',
+      stroke: 'https://d273i1jagfl543.cloudfront.net/templates/global_temp_landscape_temp_10_Mask_stroke.png',
+      design_pattern: 'https://d273i1jagfl543.cloudfront.net/templates/global_temp_landscape_temp_10_Design_Pattern.png'
+    }
+  };
 
   return (
     <div className="outer-div">
       <div className="canvas-div">
-        <div className='canvas'><Canvas
-          templateData={{ mask, stroke, design_pattern }} // Pass template data as props
-          backgroundColor={background} // Pass background color as props
-          image={imageFile} // Pass image file as props
-          captionText={caption} // Pass caption text as props
-          ctaText={cta} // Pass CTA text as props
-        /></div>
-        
+        <Canvas
+          backgroundColor={background}
+          image={imageFile}
+          templateData={templateData}
+          captionText={caption}
+          ctaText={cta}
+        />
       </div>
       <div className="input">
         <div className="ini-text">
@@ -60,16 +52,16 @@ function App() {
           <p>Customise your ad and get the templates accordingly</p>
         </div>
         <div className="input-img">
-          <CanvasImage setImage={setImageFile} /> {/* Pass setImage function as props */}
+          <CanvasImage setImage={setImageFile} />
         </div>
         <div className="input-content">
-          <InputContent setCaptionText={setCaption} /> {/* Pass setCaptionText function as props */}
+          <InputContent setCaptionText={setCaption} />
         </div>
         <div className="input-cta">
-          <CtaContent setCtaText={setCta} /> {/* Pass setCtaText function as props */}
+          <CtaContent setCtaText={setCta} />
         </div>
         <div className="input-color">
-          <ColorPicker setBackground={setColor} /> {/* Pass setBackground function as props */}
+          <ColorPicker setBackground={setBackground} />
         </div>
       </div>
     </div>
@@ -77,6 +69,3 @@ function App() {
 }
 
 export default App;
-
-
-
